@@ -1,0 +1,131 @@
+# 🐱🐱🐱🐱🐱🐱🐱🐱🐱
+
+allow_remote_control yes
+# listen_on unix:/tmp/kitty
+
+# Gruvbox Nord
+include Themes/Catppuccin.conf
+
+dynamic_background_opacity yes
+
+tab_bar_edge top
+tab_bar_style powerline
+
+# angled, slanted, round
+tab_powerline_style round
+
+active_tab_foreground   #000
+active_tab_background   #ffffff
+active_tab_font_style   bold-italic
+inactive_tab_foreground #ffffff
+inactive_tab_background #282828
+inactive_tab_font_style italic
+tab_bar_background none
+
+# font_family      Monoid
+font_family      Hack 
+italic_font      auto
+bold_font        auto
+bold_italic_font auto
+
+# Font size (in pts)
+font_size        14.6
+
+background_opacity 1
+
+# The cursor shape can be one of (block, beam, underline)
+shell_integration no-cursor
+cursor_shape block
+
+cursor_blink_interval 0.5
+
+mouse_hide_wait 5
+
+# Number of lines of history to keep in memory for scrolling back
+scrollback_lines 2000
+
+scrollback_pager less +G -R
+
+# Wheel scroll multiplier (modify the amount scrolled by the mouse wheel)
+wheel_scroll_multiplier 5.0
+
+# The interval between successive clicks to detect double/triple clicks (in seconds)
+click_interval 0.5
+
+select_by_word_characters :@-./_~?&=%+#
+
+enabled_layouts *
+
+remember_window_size   no
+initial_window_width   640
+initial_window_height  400
+
+repaint_delay    10
+
+input_delay 3
+
+visual_bell_duration 0.0
+enable_audio_bell yes
+
+# The value of the TERM environment variable to set
+term xterm-kitty
+
+window_border_width 0
+window_margin_width 5
+
+##  Key Maps ##
+# Clipboard
+map super+v               paste_from_clipboard
+map ctrl+shift+s          paste_from_selection
+map super+c               copy_to_clipboard
+map shift+insert          paste_from_selection
+
+# Window management
+map ctrl+enter            new_os_window_with_cwd
+map ctrl+shift+enter      new_window_with_cwd
+map ctrl+shift+]          next_window
+map ctrl+shift+[          previous_window
+map ctrl+shift+`          move_window_to_top
+map ctrl+1                first_window
+map ctrl+2                second_window
+map ctrl+3                third_window
+map ctrl+4                fourth_window
+map ctrl+shift+q          no_map
+map ctrl+shift+w          no_map
+
+map ctrl+right            resize_window narrower
+map ctrl+left             resize_window wider
+map ctrl+up               resize_window taller
+map ctrl+down             resize_window shorter 3
+
+# Tab management
+map ctrl+shift+r          set_tab_title
+
+map ctrl+shift+right      next_tab 
+map ctrl+shift+left       previous_tab
+map alt+t                 new_tab_with_cwd ranger
+map alt+enter             new_tab_with_cwd 
+
+map alt+1                 goto_tab 1
+map alt+2                 goto_tab 2
+map alt+3                 goto_tab 3
+map alt+4                 goto_tab 4
+map alt+5                 goto_tab 5
+map alt+6                 goto_tab 6
+
+map ctrl+q                close_tab
+map ctrl+shift+l          next_layout
+map ctrl+shift+.          move_tab_forward
+map ctrl+shift+,          move_tab_backward
+
+# Miscellaneous
+map ctrl+shift+backspace  restore_font_size
+map ctrl+shift+up         set_background_opacity +0.1
+map ctrl+shift+down       set_background_opacity -0.1
+
+map ctrl+shift+f toggle_fullscreen
+map ctrl+shift+u kitten unicode_input
+
+map ctrl+r load_config_file
+map ctrl+alt+a send_text normal,application some command with arguments\r
+

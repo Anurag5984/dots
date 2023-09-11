@@ -1,0 +1,37 @@
+theme = "base16_transparent"
+
+[editor]
+line-number = "relative"
+mouse = true
+true-color = true
+cursorline = true
+color-modes = true
+bufferline = "multiple"
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
+[editor.lsp]
+display-messages = true
+display-inlay-hints = true
+
+[keys.normal]
+G = "goto_file_end"
+X = "extend_line_above"
+ret = ["move_line_down", "goto_line_start"]
+esc = ["collapse_selection", "keep_primary_selection"]
+
+[keys.normal.g]
+q = ":reflow"
+C-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
+C-K = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_after"]
+
+[keys.normal.space]
+q = ":quit"
+w = ":write"
+

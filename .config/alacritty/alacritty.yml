@@ -1,0 +1,50 @@
+import:
+  - ~/.config/alacritty/colors.yml
+
+font:
+  normal:
+    family: "Hack Nerd Font"
+  bold:
+    family: "Hack Nerd Font"
+  italic:
+    family: "Hack Nerd Font"
+  bold_italic:
+    family: "Hack Nerd Font"
+  size: 16
+
+env:
+  TERM: alacritty
+  WINIT_X11_SCALE_FACTOR: '1.0'
+
+window:
+  opacity: 0.85  
+
+  dimensions:
+    columns: 82
+    lines: 24
+
+  padding:
+    x: 10
+    y: 4
+
+  decorations: none 
+  # decorations: full
+  startup_mode: Maximized # Windowed, Maximized, Fullscreen
+  dynamic_title: true
+
+  history: 10000
+  multiplier: 3
+
+cursor:
+  style:
+    shape: Block
+    blinking: On
+
+  unfocused_hollow: false
+
+mouse:
+  hide_when_typing: true
+
+
+live_config_reload: true
+

@@ -1,0 +1,18 @@
+pkgs:
+  zellij-compact-status:
+    version: 0.0.0
+    description: A compact replacement for the zellij status bar
+    license: GPL-3.0
+    source_url: "https://mzte.de/git/LordMZTE/zellij-compact-status"
+    root: src/main.zig
+deps:
+  zellzig:
+    git:
+      url: "https://mzte.de/git/LordMZTE/zellzig.git"
+      ref: master
+      root: src/main.zig
+  ansi-term:
+    git:
+      url: "https://github.com/ziglibs/ansi-term.git"
+      ref: 1c4b9aa23e159b297e4008181ff649c246dc8abe
+      root: src/main.zig
