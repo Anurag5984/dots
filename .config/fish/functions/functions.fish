@@ -56,11 +56,6 @@ function backup --argument filename
     cp $filename $filename.bak
 end
 
-function s 
-    echo -e "\033[31msudo $(history -n 1)\033[0m"
-    history -n 1 | sed 's/^ */sudo /' | source
-end
-
 function ranger_pwd
   /bin/ranger --choosedir=$HOME/.config/ranger/.rangerdir 
   echo ""
@@ -83,7 +78,7 @@ end
 
 function v --description "Jump to vim"
     cd $(autojump $argv[1])
-    nvim ./
+    nvim -c ": Telescope find_files" ./
 end
 
 
@@ -115,7 +110,7 @@ end
 
 
 function sync_config --description "Sync dot files"
-    config add ~/.bashrc ~/.config/alacritty/ ~/.config/fish ~/.config/alacritty/ ~/.config/kitty ~/.config/qutebrowser/ ~/.config/zellij/ ~/.zshrc ~/.config/tmux ~/.config/ranger ~/.config/doom ~/.config/lvim ~/.Xresources  ~/.config/nvim ~/.config/helix/ ~/.config/mpv ~/Scripts
+    config add ~/.bashrc ~/.config/alacritty ~/.config/fish ~/.config/alacritty ~/.config/kitty ~/.config/qutebrowser ~/.zshrc ~/.config/tmux ~/.config/ranger ~/.config/doom ~/.config/lvim ~/.Xresources  ~/.config/nvim ~/.config/helix/ ~/.config/mpv ~/Bin
 
     config commit -m "$(gum input --prompt=" " --placeholder="Write a commit message")" 
     config push

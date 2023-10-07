@@ -1,6 +1,12 @@
 
 function t --description "jump to Tmux"
     set dir1 (autojump $argv[1])
+
+    # Check if dir1 is equal to a single dot (.)
+    if test "$dir1" = "."
+        return
+    end
+
     set sessions (tmux ls)
 
     if set -q TMUX
@@ -11,32 +17,26 @@ function t --description "jump to Tmux"
     end
 end
 
-
 function tmux_attach
     set sessions (tmux ls | grep -o '^[^:]*')
 
     if set -q TMUX
-        if test (count $sessions) -eq 1
-            # Do nothing
-        else
-            tmux choose-session
-        end
+        # Do nothing
     else
         if test (count $sessions) -eq 1
-            tmux attach $selected_session
+            tmux attach
         else if test (count $sessions) -eq 0
             tmux new -s Main
         else
-            set selected_session (tmux list-sessions | fzf)
-            tmux attach $selected_session
+            echo -e "\n\n\e[1m\e[34mTmux Sessions:\e[0m"
+
+            set selected_session (gum choose --selected="Clone" --cursor=" " $sessions)
+            set selected_session (string split ":" $selected_session)[1]
+
+            tmux attach -t $selected_session
         end
     end
 end
 
-alias rename_tab="tmux rename-window"
 bind \ea 'tmux_attach; commandline -f repaint'
-
-
-
-
 

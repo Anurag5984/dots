@@ -9,6 +9,9 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- TODO
+-- leader enter -> execute pytonh / bash
+
 -----------------
 --     LAZY    --
 -----------------
@@ -26,10 +29,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-  -- Detect tabstop and shiftwidth automatically
-  'tpope/vim-sleuth',
   { 'catppuccin/nvim', name = "catppuccin", priority = 1000 },
-  -- { "ellisonleao/gruvbox.nvim", priority = 1000 },
+  { 'folke/tokyonight.nvim' },
+  { 'Nvchad/nvim-colorizer.lua' },
   {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v2.x',
@@ -94,6 +96,23 @@ require('lazy').setup({
   {'max397574/better-escape.nvim'},
 }, {})
 
+-- Colorizer
+require("colorizer").setup {
+    filetypes = { "*" },
+    user_default_options = {
+        RGB = true,
+        RRGGBB = true,
+        names = true,
+        RRGGBBAA = true,
+        AARRGGBB = false,
+        mode = "background",
+        tailwind = "both", -- false true "normal" "lsp" "both"
+        sass = { enable = true, parsers = { "css" }, },
+        always_update = false -- update even if buffer is not focused
+    },
+    buftypes = {},
+}
+
 -- Indent-blankline options
 vim.opt.list = true
 require("indent_blankline").setup {
@@ -124,7 +143,7 @@ vim.opt.nu = true
 vim.opt.relativenumber = true
 
 -- vim.api.nvim_set_hl(0, "CursorLine", {underline = true, bg = "#000000"})
-vim.opt.cursorline = true
+vim.opt.cursorline = false
 
 vim.opt.clipboard = "unnamedplus"
 vim.opt.ignorecase = true
@@ -135,6 +154,10 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
+vim.api.nvim_set_keymap("v", "<Tab>", ">gv", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<S-Tab>", "<gv", { noremap = true, silent = true })
+
+vim.opt.autoindent = true
 vim.opt.smartindent = true
 vim.opt.wrap = true
 
@@ -167,15 +190,15 @@ vim.opt.termguicolors = true
 ------------------
 --    KEYMAPS   --
 ------------------
-vim.api.nvim_del_keymap('n', '<leader>ww')
-vim.keymap.set({"n","v"}, "<leader>tt", "<cmd>VimwikiToggleListItem<CR>", {desc = 'Toggle Task'})
+vim.api.nvim_del_keymap("n", "<leader>ww")
+vim.keymap.set({"n","v"}, "<leader>tt", "<cmd>VimwikiToggleListItem<CR>", {desc = "Toggle Task"})
 
-vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+vim.keymap.set({"n","v"}, "<Space>", "<Nop>", { silent = true })
 vim.keymap.set("n", "<leader>e", "<cmd>Oil<CR>")
 -- vim.keymap.set({"n","v","i","t"}, "<M-e>", "<cmd>NnnPicker<CR>")
 
-vim.keymap.set('n', 'j', [[line('.')==line('$') ? 'gg' : 'j']], {expr = true, noremap = true})
-vim.keymap.set('n', 'k', [[line('.')==1 ? 'Gzz' : 'k']], {expr = true, noremap = true})
+vim.keymap.set("n", "j", [[line('.')==line('$') ? 'gg' : 'j']], {expr = true, noremap = true})
+vim.keymap.set("n", "k", [[line('.')==1 ? 'Gzz' : 'k']], {expr = true, noremap = true})
 vim.keymap.set("n", "ge", "Gzz")
 vim.keymap.set("n", "<Esc>", "<cmd>noh<CR>")
 vim.keymap.set("n", "<Tab>", "zA")
@@ -183,11 +206,12 @@ vim.keymap.set("n", "U", "<cmd>redo<CR>")
 
 vim.keymap.set({"n","v"}, "<leader>wq", "<cmd>wq<CR>")
 vim.keymap.set({"n","v"}, "<leader>w", "<cmd>w<CR>")
+vim.keymap.set({"n","v"}, "<leader>WW", "<cmd>:w !sudo tee %<CR>")
 vim.keymap.set({"n","v"}, "<leader>q", "<cmd>q<CR>")
 vim.keymap.set({"n","v","i","t"}, "<M-q>", "<cmd>q<CR>")
 
-vim.keymap.set("n", "<leader><Tab>", "<cmd>bnext<CR>")
-vim.keymap.set("n", "<S-Tab>", "<cmd>bprevious<CR>")
+vim.keymap.set("n", "<leader>l", "<cmd>bnext<CR>")
+vim.keymap.set("n", "<leader>h", "<cmd>bprevious<CR>")
 vim.keymap.set("n", "<leader>x", "<cmd>bdelete<CR>")
 vim.keymap.set("n", "<S-x>", "<cmd>bdelete<CR>")
 
@@ -205,11 +229,12 @@ vim.keymap.set("n", "<leader>F", function()
   print("󰉢  Buffer Formatted...")
 end, {desc = "Format"})
 
-vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], {desc = "Rename"})
 vim.keymap.set("n", "<leader>X", "<cmd>!chmod +x %<CR>", { silent = true })
 
-vim.keymap.set("n", "<leader>S", "<cmd>split ./<CR>")
-vim.keymap.set("n", "<leader>s", "<cmd>vsplit ./<CR>")
+vim.keymap.set("n", "<leader>S", "<cmd>split ./ | Telescope find_files<CR>", {desc = "Split Horizontal"})
+vim.keymap.set("n", "<leader>s", "<cmd>vsplit ./ | Telescope find_files<CR>", {desc = "Split Vertical"})
+vim.keymap.set("n", "<leader><Tab>", "<C-W>w", { noremap = true, silent = true, desc = "Switch between Splits"})
 
 vim.keymap.set('n', '<leader>ts', [[:set invspell<CR>]], {desc = 'Toggle Spell Check'})
 vim.keymap.set("n", "<leader>ti", "<cmd>set foldmethod=indent<CR>", {desc = 'Set Indent folds'})
@@ -266,18 +291,4 @@ local on_attach = function(_, bufnr)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
 end
-
-
--- Add a tab before each line in visual mode
-function VisualModeAddTab()
-    local start_line = vim.fn.line("'<")
-    local end_line = vim.fn.line("'>")
-
-    for line = start_line, end_line do
-        local line_text = vim.fn.getline(line)
-        vim.fn.setline(line, "\t" .. line_text)
-    end
-end
-
-vim.api.nvim_set_keymap('x', '<Tab>', [[:lua VisualModeAddTab()<CR>]], { noremap = true, silent = true })
 

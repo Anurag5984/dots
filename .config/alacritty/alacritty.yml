@@ -1,6 +1,12 @@
 import:
   - ~/.config/alacritty/colors.yml
 
+shell:
+  program: /bin/fish
+  args:
+    - -lc
+    - "tmux new -s Main || tmux attach -t Main"
+
 font:
   normal:
     family: "Hack Nerd Font"
@@ -17,15 +23,15 @@ env:
   WINIT_X11_SCALE_FACTOR: '1.0'
 
 window:
-  opacity: 0.85  
+  opacity: 0.75  
 
   dimensions:
     columns: 82
     lines: 24
 
   padding:
-    x: 10
-    y: 4
+    x: 8
+    y: 6
 
   decorations: none 
   # decorations: full
@@ -38,13 +44,12 @@ window:
 cursor:
   style:
     shape: Block
-    blinking: On
-
+    blinking: on
+  blink_interval: 400
   unfocused_hollow: false
 
 mouse:
   hide_when_typing: true
-
 
 live_config_reload: true
 

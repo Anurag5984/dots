@@ -1,6 +1,6 @@
 # -(Fish)- #
 
-fish_add_path ~/.cargo/bin ~/.local/bin ~/Clone/zig-0.12.0 ~/.bun/bin
+fish_add_path ~/Bin ~/.cargo/bin ~/.local/bin ~/Clone/zig-0.12.0 ~/.bun/bin
 # set --erase --universal fish_user_paths[5]
 
 source ~/.config/fish/functions/autojump.fish
@@ -14,7 +14,7 @@ set fish_greeting
 set -g fish_key_bindings fish_default_key_bindings
 
 export FZF_DEFAULT_OPTS=" --bind='ctrl-t:execute(nvim {})+abort' --cycle --reverse --prompt ' ' --pointer ' ' --marker='✔' -m --height=20% --color=bg+:#395b91,gutter:-1 --no-separator"
-export MANPAGER="sh -c 'col -bx | bat --theme=OneHalfDark -l man -p'"
+export MANPAGER="nvim +Man!"
 eval "$(thefuck --alias)"
 
 alias ..="cd .."
@@ -39,8 +39,8 @@ alias ywd="/bin/pwd | lolcat ; /bin/pwd | xclip -selection clipboard"
 alias rm="trash"
 
 alias update="sudo dnf update"
-alias update="sudo dnf remove"
 alias install="sudo dnf install"
+alias remove="sudo dnf remove"
 alias i="sudo dnf install"
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
@@ -52,7 +52,7 @@ alias opacity="~/.config/alacritty/opacity_alacritty.sh"
 bind \eq 'exit'
 bind \ec 'clear; commandline -f repaint'
 bind \er 'echo " Ranger" && ranger ; commandline -f repaint'
-bind \ee 'echo " Neovim" && nvim -c ": Telescope find_files" ; commandline -f repaint'
+bind \ee 'echo " Neovim" && nvim -c ": Oil" ; commandline -f repaint'
 bind \eg 'echo "󱓞 Jump to" && cd $(pwd | find -type d -maxdepth 3  | tail -n +2 | fzf) ; commandline -f repaint'
 bind \eG 'echo "󱓞 Jump to" && cd $(echo $HOME | find -type d -maxdepth 3  | tail -n +2 | fzf ) ; commandline -f repaint'
 
