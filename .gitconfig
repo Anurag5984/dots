@@ -1,0 +1,9 @@
+[init]
+	defaultBranch = master
+[user]
+	email = anuragp.5983@gmail.com
+	name = Admiral
+[push]
+	autoSetupRemote = false
+[core]
+	editor = nvim

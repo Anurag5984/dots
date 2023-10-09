@@ -1,0 +1,69 @@
+# -*- conf -*-
+
+shell="bash"
+title=Foot
+locked-title=no
+
+font=HackNerdFont:size=16
+font-size-adjustment=0.5
+
+# initial-window-size-pixels=700x500  # Or,
+initial-window-size-chars=120x40
+initial-window-mode=windowed
+pad=10x5
+resize-delay-ms=100
+
+[url]
+launch=xdg-open ${url}
+label-letters=sadfjklewcmpgh
+protocols=http, https, ftp, ftps, file, gemini, gopher
+uri-characters=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_.,~:;/?#@!$&%*+="'()[]
+
+[cursor]
+style=block
+blink=yes
+# color=<inverse foreground/background>
+
+[mouse]
+hide-when-typing=yes
+# alternate-scroll-mode=yes
+
+[touch]
+# long-press-delay=400
+
+[colors]
+alpha=1.00
+background=242424
+foreground=ffffff
+
+## Normal/regular colors (color palette 0-7)
+regular0=737994  # black
+regular1=e78284  # red
+regular2=a6d189  # green
+regular3=e5c890  # yellow
+regular4=8caaee  # blue
+regular5=ca9ee6  # magenta
+regular6=99d1db  # cyan
+regular7=c6d0f5  # white
+
+## Bright colors (color palette 8-15)
+bright0=737994   # bright black
+bright1=e78284   # bright red
+bright2=a6d189   # bright green
+bright3=e5c890   # bright yellow
+bright4=8caaee   # bright blue
+bright5=ca9ee6   # bright magenta
+bright6=99d1db   # bright cyan
+bright7=c6d0f5   # bright white
+
+[key-bindings]
+font-increase=Control+plus Control+KP_Add
+font-decrease=Control+minus Control+KP_Subtract
+font-reset=Control+equal
+spawn-terminal=Control+Shift+n
+show-urls-launch=Control+Shift+o
+# noop=none
+
+[text-bindings]
+# \x03=Mod4+c  # Map Super+c -> Ctrl+c
+
