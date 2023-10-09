@@ -15,7 +15,6 @@ set -g fish_key_bindings fish_default_key_bindings
 
 export FZF_DEFAULT_OPTS=" --bind='ctrl-t:execute(nvim {})+abort' --cycle --reverse --prompt ' ' --pointer ' ' --marker='✔' -m --height=20% --color=bg+:#395b91,gutter:-1 --no-separator"
 export MANPAGER="nvim +Man!"
-eval "$(thefuck --alias)"
 
 alias ..="cd .."
 alias ...="cd ../.."
@@ -43,6 +42,7 @@ alias install="sudo dnf install"
 alias remove="sudo dnf remove"
 alias i="sudo dnf install"
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias home='cd; clear'
 
 alias nf="neofetch "
 alias live="$HOME/dots/scripts/live && sleep 0.5"

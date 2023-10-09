@@ -33,7 +33,7 @@ window:
     x: 8
     y: 6
 
-  decorations: none 
+  decorations: none
   # decorations: full
   startup_mode: Maximized # Windowed, Maximized, Fullscreen
   dynamic_title: true
