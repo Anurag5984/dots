@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Dependencies
+sudo apt update
+sudo apt upgrade
+sudo apt install build-essential libx11-dev libxft-dev libxinerama-dev
+
+# Install DWM
+git clone https://git.suckless.org/dwm
+
+cd dwm
+sudo make clean install
+cd ..
+
+# Configure Xinitrc
+echo "exec dwm" > ~/.xinitrc
+
